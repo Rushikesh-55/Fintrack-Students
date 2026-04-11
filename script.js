@@ -6,17 +6,21 @@ function render() {
   list.innerHTML = "";
   total = 0;
 
-  expenses.forEach(e => {
+  expenses.forEach((e, index) => {
     total += e.amount;
 
     let li = document.createElement("li");
-    li.innerText = `${e.desc} - ₹${e.amount} (${e.category})`;
+    li.innerHTML = `
+      ${e.desc} - ₹${e.amount} (${e.category})
+      <button onclick="deleteExpense(${index})">❌</button>
+    `;
 
     list.appendChild(li);
   });
 
   document.getElementById("total").innerText = total;
 }
+
 
 function addExpense() {
   let desc = document.getElementById("desc").value;
@@ -30,5 +34,9 @@ function addExpense() {
 
   render();
 }
-
+function deleteExpense(index) {
+  expenses.splice(index, 1);
+  localStorage.setItem("expenses", JSON.stringify(expenses));
+  render();  // 🔥 THIS LINE IS IMPORTANT
+}
 render();
