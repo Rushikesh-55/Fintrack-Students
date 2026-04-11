@@ -40,3 +40,26 @@ function deleteExpense(index) {
   render();  // 🔥 THIS LINE IS IMPORTANT
 }
 render();
+function updateChart() {
+  let categories = {};
+  
+  expenses.forEach(e => {
+    if (!categories[e.category]) {
+      categories[e.category] = 0;
+    }
+    categories[e.category] += e.amount;
+  });
+
+  let ctx = document.getElementById("expenseChart").getContext("2d");
+
+  new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: Object.keys(categories),
+      datasets: [{
+        data: Object.values(categories),
+      }]
+    }
+  });
+}
+updateChart();
