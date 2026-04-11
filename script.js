@@ -1,3 +1,4 @@
+let chart;
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 let total = 0;
 
@@ -42,13 +43,32 @@ function deleteExpense(index) {
 render();
 function updateChart() {
   let categories = {};
-  
+
   expenses.forEach(e => {
     if (!categories[e.category]) {
       categories[e.category] = 0;
     }
     categories[e.category] += e.amount;
   });
+
+  let ctx = document.getElementById("expenseChart").getContext("2d");
+
+  // 🔥 Destroy old chart before creating new one
+  if (chart) {
+    chart.destroy();
+  }
+
+  chart = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: Object.keys(categories),
+      datasets: [{
+        data: Object.values(categories),
+        backgroundColor: ["#22c55e", "#3b82f6", "#f59e0b", "#ef4444"]
+      }]
+    }
+  });
+}
 
   let ctx = document.getElementById("expenseChart").getContext("2d");
 
