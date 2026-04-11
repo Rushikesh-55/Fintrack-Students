@@ -1,4 +1,9 @@
 body {
+  margin: 0;
+  padding: 0;
+  background-color: #0f172a !important;
+}
+body {
   font-family: Arial, sans-serif;
   background: #0f172a;
   margin: 0;
