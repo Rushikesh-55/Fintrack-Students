@@ -3,16 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #0f172a !important;
-}
+
 body {
   font-family: Arial, sans-serif;
   background: #0f172a;
-  margin: 0;
-  padding: 0;
 }
 
 .container {
@@ -61,4 +55,14 @@ li {
   margin: 10px 0;
   padding: 10px;
   border-radius: 8px;
+}
+
+li button {
+  margin-left: 10px;
+  background: red;
+  border: none;
+  color: white;
+  padding: 5px 8px;
+  border-radius: 6px;
+  cursor: pointer;
 }
